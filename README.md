@@ -1,4 +1,4 @@
-An example of local/remote Sagemaker [t5-small](https://huggingface.co/t5-small) model deploy
+An example of local/remote Sagemaker [t5-small](https://huggingface.co/t5-small) model deploy with integration examples
 
 ![img](img/Sagemaker%20integration.drawio.png)
 
