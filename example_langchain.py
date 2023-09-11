@@ -29,6 +29,12 @@ llm = SagemakerEndpoint(
     endpoint_name='ENDPOINT_NAME',
     region_name='us-east-1',
     content_handler=content_handler,
+    model_kwargs={
+        'max_new_tokens': 512,
+        'top_p': 0.9,
+        'temperature': 0.6,
+        'return_full_text': False
+    },
     endpoint_kwargs={'CustomAttributes': 'accept_eula=true'}
 )
 
