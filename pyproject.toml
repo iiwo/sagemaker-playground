@@ -16,6 +16,7 @@ transformers = "4.28.0"
 torch="^2.0.1"
 sentencepiece="^0.1.99"
 langchain = "0.0.271"
+duckduckgo-search= "3.8.5"
 
 [build-system]
 requires = ["poetry-core"]
