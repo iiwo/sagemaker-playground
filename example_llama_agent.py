@@ -1,8 +1,18 @@
 import json
 from typing import Dict
 
+import logging
+import langchain
+
 from langchain import SagemakerEndpoint
 from langchain.llms.sagemaker_endpoint import LLMContentHandler
+from langchain.tools import DuckDuckGoSearchResults
+
+from llama_agent import LLamaAgent
+
+log_level = logging.DEBUG
+logging.basicConfig(level=log_level)
+langchain.debug = log_level == logging.DEBUG
 
 
 class ContentHandler(LLMContentHandler):
@@ -32,11 +42,10 @@ llm = SagemakerEndpoint(
     model_kwargs={
         'max_new_tokens': 512,
         'top_p': 0.9,
-        'temperature': 0.6,
-        'return_full_text': False
+        'temperature': 0.001
     },
     endpoint_kwargs={'CustomAttributes': 'accept_eula=true'}
 )
 
-result = llm.invoke("Simply put, the theory of relativity states that")
-print(result)
+agent = LLamaAgent(llm, tools=[DuckDuckGoSearchResults(backend="news")])
+agent.run('What is the top news in tech today?')
